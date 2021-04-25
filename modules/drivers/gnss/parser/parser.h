@@ -55,6 +55,9 @@ class Parser {
   // Return a pointer to a NovAtel parser. The caller should take ownership.
   static Parser *CreateNovatel(const config::Config &config);
 
+  // Return a pointer to a Femtomes parser. The caller should take ownership.
+  static Parser *CreateFemtomes(const config::Config &config);
+
   // Return a pointer to rtcm v3 parser. The caller should take ownership.
   static Parser *CreateRtcmV3(bool is_base_station = false);
 

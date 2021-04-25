@@ -57,6 +57,9 @@ Parser *CreateParser(config::Config config, bool is_base_station = false) {
     case config::Stream::NOVATEL_BINARY:
       return Parser::CreateNovatel(config);
 
+    case config::Stream::FEMTOMES_BINARY:
+      return Parser::CreateFemtomes(config);
+
     default:
       return nullptr;
   }
