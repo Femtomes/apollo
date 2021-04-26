@@ -9,6 +9,7 @@ cc_library(
         ":data_parser",
         ":novatel_parser",
         ":rtcm_parsers",
+        ":femtomes_parser",
     ],
 )
 
@@ -22,6 +23,7 @@ cc_library(
     copts = ["-Ithird_party/rtklib"],
     deps = [
         ":novatel_parser",
+        ":femtomes_parser",
         "//cyber",
         "//modules/common/adapters:adapter_gflags",
         "//modules/common/util:message_util",
@@ -82,6 +84,33 @@ cc_library(
         "//modules/common/adapters:adapter_gflags",
         "//modules/drivers/gnss/proto:config_cc_proto",
         "//modules/drivers/gnss/proto:gnss_raw_observation_cc_proto",
+        "//modules/drivers/gnss/util:gnss_util",
+        "//third_party/rtklib",
+    ],
+)
+
+cc_library(
+    name = "femtomes_parser",
+    srcs = ["femtomes_parser.cc"],
+    hdrs = [
+        "femtomes_messages.h",
+        "parser.h",
+        "rtcm_decode.h",
+    ],
+    copts = ["-Ithird_party/rtklib"],
+    deps = [
+        "//cyber",
+        "//modules/common/adapters:adapter_gflags",
+        "//modules/common/proto:error_code_cc_proto",
+        "//modules/common/proto:geometry_cc_proto",
+        "//modules/common/proto:header_cc_proto",
+        "//modules/drivers/gnss/proto:config_cc_proto",
+        "//modules/drivers/gnss/proto:gnss_best_pose_cc_proto",
+        "//modules/drivers/gnss/proto:gnss_cc_proto",
+        "//modules/drivers/gnss/proto:gnss_raw_observation_cc_proto",
+        "//modules/drivers/gnss/proto:heading_cc_proto",
+        "//modules/drivers/gnss/proto:imu_cc_proto",
+        "//modules/drivers/gnss/proto:ins_cc_proto",
         "//modules/drivers/gnss/util:gnss_util",
         "//third_party/rtklib",
     ],
