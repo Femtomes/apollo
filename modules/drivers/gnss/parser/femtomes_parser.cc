@@ -357,19 +357,19 @@ Parser::MessageType FemtomesParser::PrepareMessage(MessagePtr* message_ptr) {
       }
       break;
 
-    case femtomes::CORRIMUDATA:
-    case femtomes::CORRIMUDATAS:
-    case femtomes::IMURATECORRIMUS:
-      if (message_length != sizeof(femtomes::CorrImuData)) {
-        AERROR << "Incorrect message_length";
-        break;
-      }
+    // case femtomes::CORRIMUDATA:
+    // case femtomes::CORRIMUDATAS:
+    // case femtomes::IMURATECORRIMUS:
+    //   if (message_length != sizeof(femtomes::CorrImuData)) {
+    //     AERROR << "Incorrect message_length";
+    //     break;
+    //   }
 
-      if (HandleCorrImuData(reinterpret_cast<femtomes::CorrImuData*>(message))) {
-        *message_ptr = &ins_;
-        return MessageType::INS;
-      }
-      break;
+    //   if (HandleCorrImuData(reinterpret_cast<femtomes::CorrImuData*>(message))) {
+    //     *message_ptr = &ins_;
+    //     return MessageType::INS;
+    //   }
+    //   break;
 
     case femtomes::INSPVA:
     case femtomes::INSPVAS:
@@ -672,7 +672,7 @@ bool FemtomesParser::HandleInsPva(const femtomes::InsPva* pva) {
   double seconds = pva->gps_week * SECONDS_PER_WEEK + pva->gps_seconds;
   if (ins_.measurement_time() != seconds) {
     ins_.set_measurement_time(seconds);
-    return false;
+    // return false;
   }
 
   ins_.mutable_header()->set_timestamp_sec(cyber::Time::Now().ToSecond());
